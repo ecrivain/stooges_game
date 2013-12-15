@@ -19,6 +19,10 @@ class Game
     puts "#{formatted_name} #{player.score}"
   end
   
+  def total_points
+    @players.reduce(0) { |sum, player| sum + player.points }
+  end
+  
   def print_stats
     strong_players = @players.select { |player| player.strong? }
     wimpy_players = @players.reject { |player| player.strong? }
@@ -46,6 +50,9 @@ class Game
       puts "\n#{player.name}'s point totals:"
       puts "#{player.points} grand total points"
     end  
+  
+  puts "Total treasure points found #{total_points}"
+    
   end
   
   def play(rounds)
@@ -63,6 +70,8 @@ class Game
         puts "\n"
       end
     end
+    
+    
     
     treasures = TreasureTrove::TREASURES
     

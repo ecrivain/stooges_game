@@ -1,4 +1,5 @@
 require_relative 'game'
+require_relative 'treasure_trove'
 
 # Outside of the class, we refer to the external state of an 
 # object as its attributes.
@@ -13,6 +14,13 @@ class Player
     @health = health
     @found_treasures = Hash.new(0)
   end
+  
+  def each_found_treasure
+     @found_treasures.each do |name, points|
+       yield Treasure.new(name, points)
+     end
+   end
+  
   
   # override sort method
   def <=>(other)
@@ -31,7 +39,6 @@ class Player
   end
   
   def found_treasure(treasure)
-    
     @found_treasures[treasure.name] += treasure.points
     puts "#{@name} found a #{treasure.name} worth #{treasure.points} points."
     puts "#{@name}'s treasures: #{@found_treasures}"

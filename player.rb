@@ -20,7 +20,11 @@ class Player
        yield Treasure.new(name, points)
      end
    end
-  
+   
+  def self.from_csv(string)
+    name, health = string.split(',')
+    Player.new(name, Integer(health))
+  end
   
   # override sort method
   def <=>(other)

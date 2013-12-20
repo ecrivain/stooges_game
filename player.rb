@@ -1,11 +1,14 @@
 require_relative 'game'
 require_relative 'treasure_trove'
+require_relative 'playable'
 
 # Outside of the class, we refer to the external state of an 
 # object as its attributes.
 
 class Player
-  attr_reader :health
+  include Playable
+  
+  attr_accessor :health
   attr_accessor :name
   
   
@@ -52,25 +55,8 @@ class Player
     @found_treasures.values.reduce(0, :+)
   end
   
-  
-  # virtual attribute's are used to access the score from outside Player class
-  # (aka virtual accessor method)
   def score
     @health + points
-  end
-  
-  def strong?
-    @health > 200
-  end
-
-  def w00t
-    @health += 15
-    puts "#{@name} got w00ted!" 
-  end
-  
-  def blam
-    @health -= 10
-    puts "#{@name} got blammed" 
   end
 end
 

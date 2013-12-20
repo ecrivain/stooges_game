@@ -1,10 +1,12 @@
 require_relative 'player'
 require_relative 'die'
+require_relative 'loaded_die'
 
 module GameTurn
   def self.take_turn(player)
     @player = player
-    die = Die.new
+    # die = Die.new
+    die = LoadedDie.new
     case die.roll
     when 1..2
       player.blam

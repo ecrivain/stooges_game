@@ -16,7 +16,7 @@ describe Game do
       @game.title.should == "Knuckleheads"
   end
   
-  it "w00ts the player of a high number is rolled" do
+  it "w00ts the player if a high number is rolled" do
     Die.any_instance.stub(:roll).and_return(5)
     
     @game.play(2)
@@ -32,7 +32,7 @@ describe Game do
     @player.health.should == @initial_health
   end
   
-  it "blams the player of a low number is rolled" do
+  it "blams the player if a low number is rolled" do
     Die.any_instance.stub(:roll).and_return(1)
     
     @game.play(2)
